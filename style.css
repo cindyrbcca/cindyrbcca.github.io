@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .logo h1 {
+    font-size: 1.4rem;
+    color: white;
+  }
+  
+  .logo span {
+    display: block;
+    font-size: 0.9rem;
+    color: #cfcfcf;
+  }
+  
+  .search-bar input {
+    width: 400px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+  }
+  
+  nav a, nav span {
+    color: #ccc;
+    font-weight: bold;
+    margin-left: 20px;
+    text-decoration: none;
+  }
+  
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .welcome h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .welcome h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .quote {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 20px auto;
+    font-style: italic;
+  }
+  
+  .footer {
+    margin-top: 60px;
+    color: #e0e0e0;
+  }
+  
+  .footer strong {
+    font-size: 1.1rem;
+  }
+  
+  .footer .instagram {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #f0e6ff;
+  }
+  
