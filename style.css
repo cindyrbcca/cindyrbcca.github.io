@@ -5,90 +5,107 @@
   }
   
   body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Arial Rounded MT Bold', 'Helvetica Neue', sans-serif;
+    background: linear-gradient(to bottom right, #3e31f0, #c763f4, #6ec0e6);
     color: white;
-    background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
-    min-height: 100vh;
+    height: 100vh;
+    padding: 30px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
   
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
-    background-color: rgba(0, 0, 0, 0.4);
   }
   
-  .logo h1 {
-    font-size: 1.4rem;
-    color: white;
+  .logo-section {
+    flex: 1;
+  }
+  
+  .logo strong {
+    font-size: 1.5rem;
   }
   
   .logo span {
-    display: block;
     font-size: 0.9rem;
-    color: #cfcfcf;
+    color: #d1d1d1;
+  }
+  
+  .search-bar {
+    flex: 2;
+    display: flex;
+    justify-content: center;
   }
   
   .search-bar input {
-    width: 400px;
+    width: 80%;
     padding: 10px 15px;
-    border-radius: 10px;
     border: 2px solid white;
+    border-radius: 15px;
     background: transparent;
     color: white;
     font-size: 1rem;
   }
   
-  nav a, nav span {
+  .search-bar input::placeholder {
     color: #ccc;
+  }
+  
+  .auth {
+    flex: 1;
+    text-align: right;
     font-weight: bold;
-    margin-left: 20px;
+  }
+  
+  .auth a {
+    color: white;
     text-decoration: none;
+    margin-right: 15px;
+  }
+  
+  .currency {
+    color: #ccc;
   }
   
   main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 40px 20px;
+    text-align: left;
+    max-width: 700px;
+    margin-top: 100px;
   }
   
-  .welcome h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
   }
   
-  .welcome h1 {
-    font-size: 4rem;
+  .bold {
+    font-weight: 900;
+  }
+  
+  blockquote {
+    font-size: 1.1rem;
+    margin-top: 30px;
+    max-width: 400px;
+    float: right;
+  }
+  
+  .play-title {
+    margin-top: 80px;
     font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .quote {
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin: 20px auto;
-    font-style: italic;
-  }
-  
-  .footer {
-    margin-top: 60px;
     color: #e0e0e0;
   }
   
-  .footer strong {
-    font-size: 1.1rem;
+  .description {
+    margin-top: 10px;
+    color: #d4d4d4;
   }
   
-  .footer .instagram {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #f0e6ff;
+  .social {
+    margin-top: 20px;
+    color: #f2f2f2;
   }
   
