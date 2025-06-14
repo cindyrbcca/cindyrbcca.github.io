@@ -1,24 +1,8 @@
-/*!
-  * Bootstrap v5.3.6 (https://getbootstrap.com/)
-  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.bootstrap = factory());
 })(this, (function () { 'use strict';
-
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap dom/data.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-  /**
-   * Constants
-   */
 
   const elementMap = new Map();
   const Data = {
@@ -28,8 +12,6 @@
       }
       const instanceMap = elementMap.get(element);
 
-      // make it clear we only want one instance per element
-      // can be removed later when multiple key/instances are fine to be used
       if (!instanceMap.has(key) && instanceMap.size !== 0) {
         // eslint-disable-next-line no-console
         console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
@@ -56,14 +38,6 @@
       }
     }
   };
-
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap util/index.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
   const MAX_UID = 1000000;
   const MILLISECONDS_MULTIPLIER = 1000;
   const TRANSITION_END = 'transitionend';
@@ -149,8 +123,7 @@
       return false;
     }
     const elementIsVisible = getComputedStyle(element).getPropertyValue('visibility') === 'visible';
-    // Handle `details` element as its content may falsie appear visible when it is closed
-    const closedDetails = element.closest('details:not([open])');
+        const closedDetails = element.closest('details:not([open])');
     if (!closedDetails) {
       return elementIsVisible;
     }
@@ -191,7 +164,6 @@
       return element;
     }
 
-    // when we don't find a shadow root
     if (!element.parentNode) {
       return null;
     }
@@ -208,7 +180,7 @@
    * @see https://www.harrytheo.com/blog/2021/02/restart-a-css-animation-with-javascript/#restarting-a-css-animation
    */
   const reflow = element => {
-    element.offsetHeight; // eslint-disable-line no-unused-expressions
+    element.offsetHeight;
   };
   const getjQuery = () => {
     if (window.jQuery && !document.body.hasAttribute('data-bs-no-jquery')) {
@@ -219,7 +191,6 @@
   const DOMContentLoadedCallbacks = [];
   const onDOMContentLoaded = callback => {
     if (document.readyState === 'loading') {
-      // add listener on the first call when the document is in loading state
       if (!DOMContentLoadedCallbacks.length) {
         document.addEventListener('DOMContentLoaded', () => {
           for (const callback of DOMContentLoadedCallbacks) {
@@ -236,7 +207,7 @@
   const defineJQueryPlugin = plugin => {
     onDOMContentLoaded(() => {
       const $ = getjQuery();
-      /* istanbul ignore if */
+    
       if ($) {
         const name = plugin.NAME;
         const JQUERY_NO_CONFLICT = $.fn[name];
@@ -279,8 +250,6 @@
   };
 
   /**
-   * Return the previous/next element of a list.
-   *
    * @param {array} list    The list of elements
    * @param activeElement   The active element
    * @param shouldGetNext   Choose to get next or previous element
@@ -291,8 +260,6 @@
     const listLength = list.length;
     let index = list.indexOf(activeElement);
 
-    // if the element does not exist in the list return an element
-    // depending on the direction and if cycle is allowed
     if (index === -1) {
       return !shouldGetNext && isCycleAllowed ? list[listLength - 1] : list[0];
     }
@@ -303,32 +270,16 @@
     return list[Math.max(0, Math.min(index, listLength - 1))];
   };
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap dom/event-handler.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
-
   const namespaceRegex = /[^.]*(?=\..*)\.|.*/;
   const stripNameRegex = /\..*/;
   const stripUidRegex = /::\d+$/;
-  const eventRegistry = {}; // Events storage
+  const eventRegistry = {};
   let uidEvent = 1;
   const customEvents = {
     mouseenter: 'mouseover',
     mouseleave: 'mouseout'
   };
   const nativeEvents = new Set(['click', 'dblclick', 'mouseup', 'mousedown', 'contextmenu', 'mousewheel', 'DOMMouseScroll', 'mouseover', 'mouseout', 'mousemove', 'selectstart', 'selectend', 'keydown', 'keypress', 'keyup', 'orientationchange', 'touchstart', 'touchmove', 'touchend', 'touchcancel', 'pointerdown', 'pointermove', 'pointerup', 'pointerleave', 'pointercancel', 'gesturestart', 'gesturechange', 'gestureend', 'focus', 'blur', 'change', 'reset', 'select', 'submit', 'focusin', 'focusout', 'load', 'unload', 'beforeunload', 'resize', 'move', 'DOMContentLoaded', 'readystatechange', 'error', 'abort', 'scroll']);
-
-  /**
-   * Private methods
-   */
 
   function makeEventUid(element, uid) {
     return uid && `${uid}::${uidEvent++}` || element.uidEvent || uidEvent++;
@@ -376,7 +327,7 @@
   }
   function normalizeParameters(originalTypeEvent, handler, delegationFunction) {
     const isDelegated = typeof handler === 'string';
-    // TODO: tooltip passes `false` instead of selector, so we need to check
+
     const callable = isDelegated ? delegationFunction : handler || delegationFunction;
     let typeEvent = getTypeEvent(originalTypeEvent);
     if (!nativeEvents.has(typeEvent)) {
@@ -390,8 +341,6 @@
     }
     let [isDelegated, callable, typeEvent] = normalizeParameters(originalTypeEvent, handler, delegationFunction);
 
-    // in case of mouseenter or mouseleave wrap the handler within a function that checks for its DOM position
-    // this prevents the handler from being dispatched the same way as mouseover or mouseout does
     if (originalTypeEvent in customEvents) {
       const wrapFunction = fn => {
         return function (event) {
@@ -435,7 +384,6 @@
     }
   }
   function getTypeEvent(event) {
-    // allow to get the native events from namespaced events ('click.bs.button' --> 'click')
     event = event.replace(stripNameRegex, '');
     return customEvents[event] || event;
   }
